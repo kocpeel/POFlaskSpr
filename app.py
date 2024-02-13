@@ -24,4 +24,24 @@ app = Flask(__name__)
    
 # }
 
-users = {}
+
+users = {
+    1: {
+        'firstName': 'John',
+        'lastName': 'Doe',
+        'birthYear':  1990,
+        'group': 'user'
+    },
+    2: {
+        'firstName': 'Jane',
+        'lastName': 'Doe',
+        'birthYear':  1995,
+        'group': 'premium'
+    },
+    3: {
+        'firstName': 'Admin',
+        'lastName': 'User',
+        'birthYear':  1985,
+        'group': 'admin'
+    }
+}
