@@ -58,3 +58,17 @@ def validate_user(user):
 @app.route('/users', methods=['GET'])
 def get_all_users():
     return jsonify({'users': users})
+
+@app.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    if user_id not in users:
+        abort(404)
+    user = users[user_id]
+    age = datetime.now().year - user['birthYear']
+    return jsonify({
+        'id': user_id,
+        'firstName': user['firstName'],
+        'lastName': user['lastName'],
+        'age': age,
+        'group': user['group']
+    })
