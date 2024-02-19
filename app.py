@@ -45,3 +45,16 @@ users = {
         'group': 'admin'
     }
 }
+
+
+def validate_user(user):
+    valid_groups = ['user', 'premium', 'admin']
+    if 'firstName' not in user or 'lastName' not in user or 'birthYear' not in user or 'group' not in user:
+        return False
+    if user['group'] not in valid_groups:
+        return False
+    return True
+
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    return jsonify({'users': users})
