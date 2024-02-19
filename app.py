@@ -72,3 +72,10 @@ def get_user(user_id):
         'age': age,
         'group': user['group']
     })
+
+
+@app.route('/users', methods=['POST'])
+def create_user():
+    if not request.json or not validate_user(request.json):
+        abort(400)
+    return jsonify({'id': user_id}),  201
