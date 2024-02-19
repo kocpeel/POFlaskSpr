@@ -74,8 +74,15 @@ def get_user(user_id):
     })
 
 
-@app.route('/users', methods=['POST'])
-def create_user():
+@app.route('/users', methods=['POST']) 
+def create_user(): # half was commited
     if not request.json or not validate_user(request.json):
         abort(400)
+    user_id = len(users) +  1
+    users[user_id] = {
+        'firstName': request.json['firstName'],
+        'lastName': request.json['lastName'],
+        'birthYear': request.json['birthYear'],
+        'group': request.json['group']
+    }
     return jsonify({'id': user_id}),  201
