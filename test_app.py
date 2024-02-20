@@ -29,3 +29,17 @@ def test_create_user(client):
     data = json.loads(response.data)
     assert 'id' in data
     assert len(users) ==  1
+
+
+def test_update_user(client):
+    user_data = {
+        'firstName': 'Jane',
+        'lastName': 'Doe',
+        'birthYear':  1995,
+        'group': 'premium'
+    }
+    response = client.post('/users', data=json.dumps(user_data), content_type='application/json')
+    assert response.status_code ==  201
+    data = json.loads(response.data)
+    assert 'id' in data
+    user_id = data['id']
