@@ -86,3 +86,13 @@ def create_user(): # half was commited
         'group': request.json['group']
     }
     return jsonify({'id': user_id}),  201
+
+
+@app.route('/users/<int:user_id>', methods=['PATCH'])
+def update_user(user_id):
+    if user_id not in users:
+        abort(404)
+    if not request.json or not validate_user(request.json):
+        abort(400)
+    users[user_id].update(request.json)
+    return '',  204
