@@ -23,4 +23,9 @@ def test_create_user(client):
         'lastName': 'Doe',
         'birthYear':  1990,
         'group': 'user'
-    }
+    } 
+    response = client.post('/users', data=json.dumps(user_data), content_type='application/json')
+    assert response.status_code ==  201
+    data = json.loads(response.data)
+    assert 'id' in data
+    assert len(users) ==  1
