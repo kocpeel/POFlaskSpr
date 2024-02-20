@@ -75,7 +75,7 @@ def get_user(user_id):
 
 
 @app.route('/users', methods=['POST']) 
-def create_user(): # half was commited
+def create_user(): 
     if not request.json or not validate_user(request.json):
         abort(400)
     user_id = len(users) +  1
@@ -97,6 +97,13 @@ def update_user(user_id):
     users[user_id].update(request.json)
     return '',  204
 
+
+@app.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    if user_id not in users:
+        abort(404)
+    del users[user_id]
+    return '',  204
 
 if __name__ == '__main__':
     app.run(debug=True)
