@@ -15,3 +15,12 @@ def test_get_all_users(client):
     assert response.status_code ==  200
     data = json.loads(response.data)
     assert isinstance(data['users'], dict)
+
+
+def test_create_user(client):
+    user_data = {
+        'firstName': 'John',
+        'lastName': 'Doe',
+        'birthYear':  1990,
+        'group': 'user'
+    }
