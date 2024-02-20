@@ -96,3 +96,10 @@ def update_user(user_id):
         abort(400)
     users[user_id].update(request.json)
     return '',  204
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
