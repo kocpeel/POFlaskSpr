@@ -62,4 +62,9 @@ def test_delete_user(client):
         'lastName': 'Me',
         'birthYear':  2000,
         'group': 'user'
-    }
+    } 
+    response = client.post('/users', data=json.dumps(user_data), content_type='application/json')
+    assert response.status_code ==  201
+    data = json.loads(response.data)
+    assert 'id' in data
+    user_id = data['id']
