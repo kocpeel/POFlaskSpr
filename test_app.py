@@ -55,3 +55,11 @@ def test_update_user(client):
     assert users[user_id]['lastName'] == 'User'
     assert users[user_id]['birthYear'] ==  1996
     assert users[user_id]['group'] == 'admin'
+    
+def test_delete_user(client):
+    user_data = {
+        'firstName': 'Delete',
+        'lastName': 'Me',
+        'birthYear':  2000,
+        'group': 'user'
+    }
