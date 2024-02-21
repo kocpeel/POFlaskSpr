@@ -30,7 +30,6 @@ def test_create_user(client):
     assert 'id' in data
     assert len(users) ==  1
 
-
 def test_update_user(client):
     user_data = {
         'firstName': 'Jane',
@@ -43,3 +42,16 @@ def test_update_user(client):
     data = json.loads(response.data)
     assert 'id' in data
     user_id = data['id']
+
+    updated_data = {
+        'firstName': 'Updated',
+        'lastName': 'User',
+        'birthYear':  1996,
+        'group': 'admin'
+    }
+    response = client.patch(f'/users/{user_id}', data=json.dumps(updated_data), content_type='application/json')
+    assert response.status_code ==  204
+    assert users[user_id]['firstName'] == 'Updated'
+    assert users[user_id]['lastName'] == 'User'
+    assert users[user_id]['birthYear'] ==  1996
+    assert users[user_id]['group'] == 'admin'
