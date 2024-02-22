@@ -68,3 +68,7 @@ def test_delete_user(client):
     data = json.loads(response.data)
     assert 'id' in data
     user_id = data['id']
+    
+    response = client.delete(f'/users/{user_id}')
+    assert response.status_code ==  204
+    assert user_id not in users
