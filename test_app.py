@@ -2,7 +2,6 @@ import pytest
 import json
 from app import app, users
 
-
 @pytest.fixture
 def client():
     app.config['TESTING'] = True
@@ -30,6 +29,7 @@ def test_create_user(client):
     assert 'id' in data
     assert len(users) ==  1
 
+
 def test_update_user(client):
     user_data = {
         'firstName': 'Jane',
@@ -55,7 +55,10 @@ def test_update_user(client):
     assert users[user_id]['lastName'] == 'User'
     assert users[user_id]['birthYear'] ==  1996
     assert users[user_id]['group'] == 'admin'
-    
+
+
+
+
 def test_delete_user(client):
     user_data = {
         'firstName': 'Delete',
@@ -68,7 +71,7 @@ def test_delete_user(client):
     data = json.loads(response.data)
     assert 'id' in data
     user_id = data['id']
-    
+
     response = client.delete(f'/users/{user_id}')
     assert response.status_code ==  204
     assert user_id not in users
