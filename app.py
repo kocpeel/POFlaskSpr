@@ -4,7 +4,6 @@ from datetime import datetime
 app = Flask(__name__)
 
 
-
 #     Model użytkownika dodawany w aplikacji powinien być zgodny z następującym JSON:
 # {
 #     "firstName": str,
@@ -23,6 +22,7 @@ app = Flask(__name__)
 #     "group": str, // jedynymi poprawnymi wartościami są napisy: "user", "premium", "admin"
    
 # }
+
 
 
 users = {
@@ -45,7 +45,6 @@ users = {
         'group': 'admin'
     }
 }
-
 
 def validate_user(user):
     valid_groups = ['user', 'premium', 'admin']
@@ -72,7 +71,6 @@ def get_user(user_id):
         'age': age,
         'group': user['group']
     })
-
 
 @app.route('/users', methods=['POST']) 
 def create_user(): 
@@ -107,6 +105,4 @@ def delete_user(user_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
 
